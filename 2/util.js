@@ -15,6 +15,7 @@ var cons = function (x, y){
 };
 
 var car = function (z){
+    // console.log(z);
     return z(0);
 };
 
@@ -80,7 +81,17 @@ var mmap = function (proc, items){
 };
 
 var pair = function (x){
-    return typeof x !== 'number' && cdr(x);
+    if (x.name !== 'dispatch'){
+        return false;
+    }
+    if (car(x) === null && cdr(x) === null){
+        return false;
+    }
+    var result = car(x).name === 'dispatch' || cdr(x) !== null;
+    // console.log(result);
+    return result;
 };
 
+// var te = list([5, 6])
+// console.log(pair(te))
 module.exports = [cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair]

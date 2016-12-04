@@ -61,3 +61,5 @@ var first_denomination = function (kinds_of_coins){
 
 // var count_change_res = count_change(100);
 // console.log(count_change_res);
+
+module.exports = fib_v2;

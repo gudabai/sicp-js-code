@@ -14,5 +14,5 @@ var memq = function (item, x){
 
 var a = list(["fyb", 1, "hp"]);
 print_list(a);
-console.log(memq(1, a));
-print_list(memq("nan3i", a));
+print_list(memq(1, a));
+print_list(memq("hp", a));
