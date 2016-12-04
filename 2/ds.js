@@ -1,20 +1,15 @@
 "use strict";
 
-var list_func = require('./list.js');
-var cons = list_func.cons;
-var car = list_func.car;
-var cdr = list_func.cdr;
-var mmap = list_func.mmap;
+let [cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair] = require('./util.js');
 
-var x = cons(cons(1, 2), cons(cons(3,9), 4));
-// console.log(x);
+var x = list(list([1,2]), list([3,4]));
+// console.log(leng(x));
+// print_list(x);
+// console.log(car(x));
 
-var pair = function (x){
-    return x.length>1;
-};
 
 var count_leaves = function (x){
-    if (x.length === 0){
+    if (!x){
         return 0;
     }else if (!pair(x)){
         return 1;
@@ -27,8 +22,8 @@ var count_leaves_res = count_leaves(x);
 // console.log(count_leaves_res);
 
 var scale_tree = function (tree, factor){
-    if (tree.length === 0){
-        return undefined;
+    if (!tree){
+        return null;
     }else if (!pair(tree)){
         return tree*factor;
     }else {
@@ -38,8 +33,9 @@ var scale_tree = function (tree, factor){
     }
 };
 
-var thetree = [1,[2,[3,4],5],6,7]
-var scale_tree_res = scale_tree(thetree, 10);
+// var thetree = [1,[2,[3,4],5],6,7]
+// var scale_tree_res = scale_tree(x, 10);
+// print_list(car(scale_tree_res))
 // console.log(scale_tree_res);
 
 var scale_tree_v2 = function (tree, factor){
@@ -55,5 +51,7 @@ var scale_tree_v2 = function (tree, factor){
         )
 };
 
-var scale_tree_v2_res = scale_tree_v2(thetree, 10);
-// console.log(scale_tree_v2_res);
+var scale_tree_v2_res = scale_tree_v2(x, 10);
+print_list(car(scale_tree_v2_res));
+print_list(cdr(scale_tree_v2_res));
+console.log(scale_tree_v2_res);

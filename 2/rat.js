@@ -1,26 +1,6 @@
 "use strict";
 
-var cons = function (x, y){
-    let dispatch = function (m){
-        if (m === 0){
-            return x;
-        }else if (m === 1){
-            return y;
-        }else {
-            console.log("0 or 1.")
-            return;
-        }
-    }
-    return dispatch;
-};
-
-var car = function (z){
-    return z(0);
-};
-
-var cdr = function (z){
-    return z(1);
-};
+let [cons, car, cdr, list, print_list, mmap, list_ref, leng, append] = require('./util.js');
 
 var gcd = function (a, b){
     if (b === 0){
@@ -74,3 +54,5 @@ var one_third = make_rat(1, 3);
 // print_rat(add_rat(one_half, one_third));
 // print_rat(mul_rat(one_half, one_third));
 // print_rat(add_rat(one_third, one_third));
+
+module.exports = [cons, car, cdr]

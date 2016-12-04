@@ -1,16 +1,17 @@
 "use strict";
 
-var new_withdraw = function (){
-    return function (amount){
-        let balance = 100;
-        if (balance>=amount){
-            balance = balance - amount;
-            return balance;
-        }else {
-            console.log("Insufficient funds.")
-        }
-    };
-};
+// 何用.
+// var new_withdraw = function (){
+//     return function (amount){
+//         let balance = 100;
+//         if (balance>=amount){
+//             balance = balance - amount;
+//             return balance;
+//         }else {
+//             console.log("Insufficient funds.")
+//         }
+//     };
+// };
 
 // 闭包，实现了这种所谓的局部状态变量.
 var make_withdraw = function (balance){ 
