@@ -4,7 +4,7 @@ let [cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair] = req
 
 
 var variable = function (x){
-	return 
+	return typeof x === 'string';
 }
 
 var same_variable = function (v1, v2){
@@ -54,10 +54,15 @@ var deriv = function (exp, var1){
 		}
 	}else if(sum(exp)){
 		return make_sum(make_product(multiplier(exp), deriv(multiplicand(exp), var1))+
-			make_sum(deriv(multiplier(exp),var1),multiplicand(exp)));
+			make_product(deriv(multiplier(exp),var1),multiplicand(exp)));
 	}else {
 		console.log("unknown expression type -- DERIV "+exp);
 	}
 }
 
-var deriv_res1 = deriv()
+// var deriv_res0 = deriv("y", "x");
+// console.log(deriv_res0);
+var deriv_res1 = deriv(list(["+", "x", 3], "x"));
+// console.log(deriv_res1);
+// print_list(deriv_res1);
+console.log(cdr(car(cdr(deriv_res1))));
