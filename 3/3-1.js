@@ -32,7 +32,7 @@ var make_withdraw = function (balance){
 // console.log(W1(50));
 
 var make_account = function (balance){
-    var withdraw = function (amount){
+    let withdraw = function (amount){
             if (balance>=amount){
                 balance = balance - amount;
                 return balance;
@@ -40,11 +40,11 @@ var make_account = function (balance){
                 console.log("Insufficient funds.")
             }
     };
-    var deposit = function (amount){
+    let deposit = function (amount){
         balance = balance+amount;
         return balance;
     };
-    var dispatch = function (m){
+    let dispatch = function (m){
         if (m === "withdraw"){
             return withdraw;
         }else if (m === "deposit"){

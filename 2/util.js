@@ -92,6 +92,29 @@ var pair = function (x){
     return result;
 };
 
+// 获得一个良好的打印形式很难。
+var print_tree = function (tree){
+    if (!tree){
+        let res = "()";
+        console.log("()");
+        return res;
+    }else{
+        let tstr = "(";
+        while (tree){
+            if (car(tree).name === 'dispatch'){
+                tstr += print_tree(car(tree))+",";
+            }else {
+                tstr += car(tree)+", ";
+            }
+                tree = cdr(tree);
+        }
+        tstr += ")";
+        let res = tstr;
+        console.log(tstr);
+        return res;
+    }
+}
+
 // var te = list([5, 6])
 // console.log(pair(te))
-module.exports = [cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair]
+module.exports = [cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair, print_tree]
