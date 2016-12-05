@@ -59,10 +59,10 @@ var intersection_set = function (set1, set2){
     }
 }
 
-var set1 = list([1,3,5,6,9,"fyb",20,"hp"]);
-var set2 = list([3,5,2,7, "hp", "js",20, "py"]);
-// var adjoin_set_res = adjoin_set(10, set1);
-// print_list(adjoin_set_res);
+var set1 = list(1,3,5,6,9,"fyb",20,"hp");
+var set2 = list(3,5,2,7, "hp", "js",20, "py");
+var adjoin_set_res = adjoin_set(10, set1);
+print_tree(adjoin_set_res);
 // console.log(element_of_set(3, set1));
 // console.log(element_of_set("hp", set1));
 // console.log(element_of_set("fyj", set1));
@@ -97,3 +97,29 @@ var element_of_tree = function (x, set){
     }
 };
 
+var adjoin_tree = function (x, tree){
+    if (!tree){
+        return make_tree(x, "()", "()");
+    }else if (entry(tree) === x){
+        return set;
+    }else if (x < entry(tree)){
+        return make_tree(
+            entry(tree),
+            adjoin_tree(x, left_branch(tree)),
+            right_branch(x)
+            );
+    }else if (x > entry(tree)){
+        return adjoin_tree(
+            entry(tree),
+            left_branch(tree),
+            adjoin_tree(x, right_branch(tree))
+            );
+    }
+} 
+
+// var tree1 = make_tree(5, list([2]), list([7]));
+// print_tree(tree1);
+// var tree2 = adjoin_tree(3, tree1);
+// print_tree(tree2);
+
+// lookup与element_of_set_v1同，不再写。

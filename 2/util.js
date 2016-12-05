@@ -24,8 +24,10 @@ var cdr = function (z){
     return z(1);
 };
 
-var list = function (items){
-    if (items.length === 1){
+var list = function (...items){
+    if (items.length === 0){
+        return null;
+    }else if (items.length === 1){
         return cons(items[0], null);
     }else if (items.length > 1){
         return cons(items[0], list(items.slice(1)));
@@ -33,6 +35,7 @@ var list = function (items){
         return null;
     }
 }
+
 
 var print_list = function (items){
     if (!items){
@@ -47,6 +50,9 @@ var print_list = function (items){
         console.log(tstr);
     }
 };
+
+var list1 = list();
+print_list(list1);
 
 var list_ref = function (items, n){
     if (n === 0){
