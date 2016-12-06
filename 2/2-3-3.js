@@ -101,15 +101,15 @@ var adjoin_tree = function (x, tree){
     if (!tree){
         return make_tree(x, null, null);
     }else if (entry(tree) === x){
-        return set;
+        return tree;
     }else if (x < entry(tree)){
         return make_tree(
             entry(tree),
             adjoin_tree(x, left_branch(tree)),
-            right_branch(x)
+            right_branch(tree)
             );
     }else if (x > entry(tree)){
-        return adjoin_tree(
+        return make_tree(
             entry(tree),
             left_branch(tree),
             adjoin_tree(x, right_branch(tree))
@@ -117,10 +117,18 @@ var adjoin_tree = function (x, tree){
     }
 } 
 
-var tree1 = make_tree(5, list(), list(7));
-print_tree(tree1);
+// 注意树的初始化，下式中的四个null是必要的。
+var tree1 = make_tree(5, list(2, null, null), list(7, null, null));
+// print_tree(tree1);
 // console.log(entry(tree1));
+// print_tree(left_branch(tree1));
+// print_tree(right_branch(tree1));
+// perfect.
 // var tree2 = adjoin_tree(3, tree1);
+// var tree2 = adjoin_tree(4, tree2);
+// var tree2 = adjoin_tree(10, tree2);
+// var tree2 = adjoin_tree(6, tree2);
+// var tree2 = adjoin_tree(8, tree2);
 // print_tree(tree2);
 
 // lookup与element_of_set_v1同，不再写。

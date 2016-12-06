@@ -105,14 +105,20 @@ var pair = function (x){
 // 该方法可完全替代print_list。
 // 只能对list用，而不能对cons(1, 2)这样的对象用，这两者之间还是不同的。
 var print_tree = function (tree){
-    if (!tree){
+    if (typeof tree === 'number'){
+        console.log(tree);
+        return tree;
+    }else if (!tree){
         let res = "()";
         console.log("()");
         return res;
     }else{
         let tstr = "(";
         while (tree){
-            if (car(tree).name === 'dispatch'){
+            if (car(tree) === null){
+                // 二叉树中的空子树。
+                tstr += "(),";
+            }else if (car(tree).name === 'dispatch'){
                 tstr += print_tree(car(tree))+",";
             }else {
                 tstr += car(tree)+",";
