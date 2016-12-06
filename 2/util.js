@@ -1,5 +1,10 @@
 "use strict";
 
+const square = x=>x*x;
+const odd = x=>x%2===1;
+const even = x=>x%2===0;
+const sumxy = (x, y)=>x+y;
+
 var cons = function (x, y){
     let dispatch = function (m){
         if (m === 0){
@@ -30,7 +35,8 @@ var list = function (...items){
     }else if (items.length === 1){
         return cons(items[0], null);
     }else if (items.length > 1){
-        return cons(items[0], list(items.slice(1)));
+        // 这个...很重要!!!
+        return cons(items[0], list(...items.slice(1)));
     }else {
         return null;
     }
@@ -43,16 +49,13 @@ var print_list = function (items){
     }else{
         let tstr = "(";
         while (items){
-            tstr += car(items)+", ";
+            tstr += car(items)+",";
             items = cdr(items);
         }
-        tstr += ")";
+        tstr = tstr.slice(0, -1)+")";
         console.log(tstr);
     }
 };
-
-var list1 = list();
-print_list(list1);
 
 var list_ref = function (items, n){
     if (n === 0){
@@ -99,6 +102,8 @@ var pair = function (x){
 };
 
 // 获得一个良好的打印形式很难。
+// 该方法可完全替代print_list。
+// 只能对list用，而不能对cons(1, 2)这样的对象用，这两者之间还是不同的。
 var print_tree = function (tree){
     if (!tree){
         let res = "()";
@@ -110,17 +115,29 @@ var print_tree = function (tree){
             if (car(tree).name === 'dispatch'){
                 tstr += print_tree(car(tree))+",";
             }else {
-                tstr += car(tree)+", ";
+                tstr += car(tree)+",";
             }
                 tree = cdr(tree);
         }
-        tstr += ")";
+        // 消灭掉最后一个逗号，为了打印好看.
+        tstr = tstr.slice(0, -1)+")";
         let res = tstr;
         console.log(tstr);
         return res;
     }
-}
+};
 
-// var te = list([5, 6])
-// console.log(pair(te))
-module.exports = [cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair, print_tree]
+var gcd = function (a, b){
+    if (b === 0){
+        return a;
+    }else {
+        return gcd(b, a%b)
+    }
+};
+
+module.exports = {
+    cons, car, cdr, list, 
+    print_list, mmap, list_ref, leng, 
+    append, pair, print_tree, gcd, 
+    square, odd, even, sumxy,
+}

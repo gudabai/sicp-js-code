@@ -1,6 +1,7 @@
 "use strict";
 
 // 糟糕的树形递归.
+// 未使用达成尾调用条件，要保用之前的调用帧，且为树形展开，性能奇差.
 var fib = function (n){
     if (n === 0){
         return 0;

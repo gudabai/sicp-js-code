@@ -1,6 +1,6 @@
 "use strict";
 
-let [cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair] = require('./util.js');
+let {cons, car, cdr, list, print_tree, mmap, list_ref, leng, append, pair, odd, even, sumxy} = require('./util.js');
 let fib = require('../1/1-2/1-2-2.js');
 
 // Bad example , zhuan des.
@@ -13,22 +13,17 @@ var sum_odd_squares = function (tree){
             tree = car(tree);
         }
         // console.log(tree)
-        if (tree%2 === 1){
+        if (odd(tree)){
             return tree*tree;
         }else{
             return 0;
         }
     }else {
-        // console.log(car(tree));
-        // console.log(cdr(tree));
-        // console.log(car(cdr(tree)))
-        // console.log(cdr(cdr(tree)))
-        // return
         return sum_odd_squares(car(tree))+sum_odd_squares(cdr(tree));
     }
 }
 
-var tree = list([list([1, list([2, 1])]),3, 9]);
+var tree = list(list(1, list(2, 1)),3, list(1, 7), 9);
 // console.log(sum_odd_squares(tree));
 
 // Bad example 2.
@@ -38,7 +33,7 @@ var even_fibs = function (n){
             return null;
         }else {
             let f = fib(k);
-            if (f%2 === 0){
+            if (even(f)){
                 return cons(f, next(k+1));
             }else {
                 return next(k+1);
@@ -50,7 +45,7 @@ var even_fibs = function (n){
 
 // var fib_res = fib(7);
 // console.log(fib_res);
-// var even_fibs_res = even_fibs(8);
+var even_fibs_res = even_fibs(30);
 // print_list(even_fibs_res);
 
 var filter = function (predicate, sequence){
@@ -63,7 +58,7 @@ var filter = function (predicate, sequence){
     }
 };
 
-// var filter_res = filter(x=>x%2===1, list([1, 2, 3, 4, 5]));
+var filter_res = filter(odd, list(1, 2, 3, 4, 5));
 // print_list(filter_res);
 
 var accumulate = function (op, initial, sequence){
@@ -72,7 +67,7 @@ var accumulate = function (op, initial, sequence){
     }return op(car(sequence), accumulate(op, initial, cdr(sequence)));
 };
 
-var accumulate_res = accumulate((x,y)=>x+y, 0, list([1, 3, 5, 7, 9]));
+var accumulate_res = accumulate(sumxy, 0, list(1, 3, 5, 7, 9));
 // console.log(accumulate_res);
 
 var enumerate_interval = function (low, high){
@@ -99,9 +94,9 @@ var enumerate_tree = function (tree){
     }
 }
 
-var tree1 = list([1, list([2, list([3, 4])]), list([5,9])]);
+var tree1 = list(1, list(2, list(3, 4)), list(5,9));
 var enumerate_tree_res = enumerate_tree(tree1);
-// print_list(enumerate_tree_res);
+// print_tree(enumerate_tree_res);
 
 var sum_odd_squares_v2 = function (tree){
     return accumulate(
@@ -134,8 +129,8 @@ var even_fibs_v2 = function (n){
         )
 }
 
-var even_fibs_v2_res = even_fibs_v2(10);
-// print_list(even_fibs_v2_res);
+var even_fibs_v2_res = even_fibs_v2(30);
+// print_tree(even_fibs_v2_res);
 
 var list_fib_squares = function (n){
     return accumulate(
@@ -153,7 +148,7 @@ var list_fib_squares = function (n){
 }
 
 var list_fib_squares_res = list_fib_squares(10);
-print_list(list_fib_squares_res);
+// print_tree(list_fib_squares_res);
 
 var product_of_squares_of_odd_elements = function (sequence){
     return accumulate(
@@ -169,7 +164,7 @@ var product_of_squares_of_odd_elements = function (sequence){
         )
 }
 
-var list1 = list([1,2,3,4,5,6]);
+var list1 = list(1,2,3,4,5,6);
 var product_of_squares_of_odd_elements_res = product_of_squares_of_odd_elements(list1);
 // console.log(product_of_squares_of_odd_elements_res);
 

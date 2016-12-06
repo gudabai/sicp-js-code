@@ -1,14 +1,6 @@
 "use strict";
 
-let [cons, car, cdr, list, print_list, mmap, list_ref, leng, append] = require('./util.js');
-
-var gcd = function (a, b){
-    if (b === 0){
-        return a;
-    }else {
-        return gcd(b, a%b)
-    }
-};
+let {cons, car, cdr, gcd} = require('./util.js');
 
 var make_rat = function (n ,d){
     let g = gcd(n, d);
@@ -54,5 +46,4 @@ var one_third = make_rat(1, 3);
 // print_rat(add_rat(one_half, one_third));
 // print_rat(mul_rat(one_half, one_third));
 // print_rat(add_rat(one_third, one_third));
-
-module.exports = [cons, car, cdr]
+// print_rat(div_rat(make_rat(2, 4), make_rat(1, 2)));

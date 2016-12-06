@@ -1,6 +1,6 @@
 "use strict";
 
-let [cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair, print_tree] = require('./util.js');
+let {cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair, print_tree} = require('./util.js');
 
 var element_of_set_v1 = function (x, set){
     if (!set){
@@ -35,7 +35,7 @@ var adjoin_set = function (x, set){
 var intersection_set_v1 = function (set1, set2){
     if (!set1 || !set2){
         return null;
-    }else if (element_of_set(car(set1), set2)){
+    }else if (element_of_set_v1(car(set1), set2)){
         return cons(car(set1), intersection_set_v1(cdr(set1), set2));
     }else {
         return intersection_set_v1(cdr(set1), set2);
@@ -59,14 +59,14 @@ var intersection_set = function (set1, set2){
     }
 }
 
-var set1 = list(1,3,5,6,9,"fyb",20,"hp");
+var set1 = list(1,2,3,5,6,9,"fyb",20,"hp");
 var set2 = list(3,5,2,7, "hp", "js",20, "py");
-var adjoin_set_res = adjoin_set(10, set1);
-print_tree(adjoin_set_res);
+// var adjoin_set_res = adjoin_set(10, set1);
+// print_tree(adjoin_set_res);
 // console.log(element_of_set(3, set1));
 // console.log(element_of_set("hp", set1));
 // console.log(element_of_set("fyj", set1));
-// var intersection_set_res = intersection_set(set1, set2);
+// var intersection_set_res = intersection_set_v1(set1, set2);
 // print_list(intersection_set_res);
 
 var entry = function (tree){
@@ -82,7 +82,7 @@ var right_branch = function (tree){
 }
 
 var make_tree = function (entry, left, right){
-    return list([entry, left, right]);
+    return list(entry, left, right);
 }
 
 var element_of_tree = function (x, set){
@@ -99,7 +99,7 @@ var element_of_tree = function (x, set){
 
 var adjoin_tree = function (x, tree){
     if (!tree){
-        return make_tree(x, "()", "()");
+        return make_tree(x, null, null);
     }else if (entry(tree) === x){
         return set;
     }else if (x < entry(tree)){
@@ -117,8 +117,9 @@ var adjoin_tree = function (x, tree){
     }
 } 
 
-// var tree1 = make_tree(5, list([2]), list([7]));
-// print_tree(tree1);
+var tree1 = make_tree(5, list(), list(7));
+print_tree(tree1);
+// console.log(entry(tree1));
 // var tree2 = adjoin_tree(3, tree1);
 // print_tree(tree2);
 
