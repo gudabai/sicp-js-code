@@ -117,12 +117,17 @@ var print_tree = function (tree){
         while (tree){
             if (car(tree) === null){
                 // 二叉树中的空子树。
+                console.log(1)
                 tstr += "(),";
             }else if (car(tree).name === 'dispatch'){
+                console.log(2)
                 tstr += print_tree(car(tree))+",";
             }else {
+                console.log(3)
                 tstr += car(tree)+",";
             }
+                console.log(4)
+                console.log(cdr(tree))
                 tree = cdr(tree);
         }
         // 消灭掉最后一个逗号，为了打印好看.

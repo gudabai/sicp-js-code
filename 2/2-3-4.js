@@ -1,9 +1,9 @@
 "use strict";
 
-let [cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair, print_tree] = require('./util.js');
+let {cons, car, cdr, list, print_list, mmap, list_ref, leng, append, pair, print_tree} = require('./util.js');
 
 var make_leaf = function (symbol, weight){
-	return list(["leaf", symbol, weight]);
+	return list("leaf", symbol, weight);
 }
 
 var leaf = function (object){
@@ -19,7 +19,7 @@ var weight_leaf = function (x){
 }
 
 var make_code_tree = function (left, right){
-	return list([
+	return list(
 		left, 
 		right,
 		append(
@@ -27,7 +27,7 @@ var make_code_tree = function (left, right){
 			symbols(right),
 			),
 		weight(left)+weight(right)
-		])
+		)
 }
 
 var left_branch = function (tree){
@@ -40,7 +40,7 @@ var right_branch = function (tree){
 
 var symbols = function (tree){
 	if (leaf(tree)){
-		return list([symbol_leaf(tree)])
+		return list(symbol_leaf(tree))
 	}else {
 		return car(cdr(cdr(tree)));
 	}

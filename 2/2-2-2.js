@@ -21,26 +21,28 @@ var count_leaves_res = count_leaves(tree2);
 // console.log(count_leaves_res);
 
 // 此处有问题！！！
-// var scale_tree = function (tree, factor){
-//     if (!tree){
-//         return null;
-//     }else if (!pair(tree)){
-//         // console.log(tree)
-//         if (tree.name === 'dispatch'){
-//             tree = car(tree);
-//         }
-//         return tree*factor;
-//     }else {
-//         // console.log(print_tree(tree));
-//         return cons(scale_tree(car(tree), factor), scale_tree(cdr(tree), factor));
-//     }
-// };
+var scale_tree = function (tree, factor){
+    if (!tree){
+        return null;
+    }else if (!pair(tree)){
+        if (tree.name === 'dispatch'){
+            tree = car(tree);
+            // 这个细节太隐密！！
+            return cons(tree*factor, null);
+        }
+        console.log(tree);
+        return tree*factor;
+    }else {
+        return cons(scale_tree(car(tree), factor), scale_tree(cdr(tree), factor));
+    }
+};
 
-// var thetree = list(1,list(2,list(3,4),5),6,7);
-// var scale_tree_res = scale_tree(thetree, 10);
+var thetree = list(1,list(2,list(3,4),5),6,7);
+// print_tree(thetree)
+var scale_tree_res = scale_tree(thetree, 10);
 // print_tree(scale_tree_res);
-var count_leaves_res2 = count_leaves(thetree)
-print_tree(thetree);
+// var count_leaves_res2 = count_leaves(thetree)
+// print_tree(thetree);
 // console.log(count_leaves_res2)
 
 var scale_tree_v2 = function (tree, factor){

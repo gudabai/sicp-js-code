@@ -117,8 +117,8 @@ var adjoin_tree = function (x, tree){
     }
 } 
 
-// 注意树的初始化，下式中的四个null是必要的。
-var tree1 = make_tree(5, list(2, null, null), list(7, null, null));
+// 注意二叉树的初始化，下式中的四个null是必要的。
+// var tree1 = make_tree(5, list(2, null, null), list(7, null, null));
 // print_tree(tree1);
 // console.log(entry(tree1));
 // print_tree(left_branch(tree1));
