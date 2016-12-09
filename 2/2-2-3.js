@@ -96,7 +96,7 @@ var enumerate_tree = function (tree){
 
 var tree1 = list(1, list(2, list(3, 4)), list(5,9));
 var enumerate_tree_res = enumerate_tree(tree1);
-// print_tree(enumerate_tree_res);
+print_tree(enumerate_tree_res);
 
 var sum_odd_squares_v2 = function (tree){
     return accumulate(

@@ -1,22 +1,27 @@
 "use strict";
 
-let {cons, car, cdr} = require('./util.js');
+let {cons, car, cdr, square} = require('./util.js');
+let sqrt = require('../1/1-3/1-3-4.js');
 
 // Ben's work.
-let make_from_real_imag = (x, y)=>cons(x, y);
-let make_from_mag_ang = (r, a)=>cons(r*Math.cos(a), r*Math.sin(a))
-let real_part = car;
-let imag_part = cdr;
-let magnitude = z=>();
-let angle = z=>();
+var ben = {
+make_from_real_imag() : (x, y)=>cons(x, y);
+make_from_mag_ang() : (r, a)=>cons(r*Math.cos(a), r*Math.sin(a))
+real_part() : car;
+imag_part() : cdr;
+magnitude() : z=>(sqrt(square(real_part(z))+square(imag_part(z))));
+angle() : z=>(Math.atan(imag_part(z), real_part(z)));
+}
 
 // Alyssa's work
+var alyssa = {
 let make_from_mag_ang = (r, a)=>cons(r, a);
-let make_from_real_imag = (r, a)=>cons()
+let make_from_real_imag = (r, a)=>cons(sqrt(square(x)+square(y)), Math.atan(y, x))
 let magnitude = car;
 let angle = cdr;
 let real_part = z=>magnitude(z)*Math.cos(angle(z));
 let imag_part = z=>magnitude(z)*Math.sin(angle(z));
+}
 
 // common func for 2's work.
 let add_complex = function (z1, z2){

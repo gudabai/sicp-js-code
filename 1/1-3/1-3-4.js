@@ -104,3 +104,5 @@ console.log(last_sqrt_res);
 
 var real_last_sqrt_res = real_last_sqrt(49);
 console.log(real_last_sqrt_res);
+
+module.exports = real_last_sqrt;
